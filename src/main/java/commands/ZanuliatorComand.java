@@ -40,6 +40,7 @@ public class ZanuliatorComand extends BotCommand {
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
         answer.setText("0");
+        // Hey! 
 
         try {
             absSender.sendMessage(answer);
