@@ -16,6 +16,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 //    private static final String LOGTAG = "KOTLETKOBOT";
 
     public KotletkoBot(){
+        register(new LectureCommand(this));
         register(new StartCommand());
         register(new FeedbackCommand());
         HelpCommand helpCommand = new HelpCommand(this);

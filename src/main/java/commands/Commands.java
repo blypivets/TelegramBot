@@ -12,4 +12,7 @@ public class Commands {
     public static final String startCommand = commandInitChar + "start";
 
     public static final String feedbackCommand = commandInitChar + "feedback";
+
+    public static final String lectureCommand = commandInitChar + "lecture";
+
 }
