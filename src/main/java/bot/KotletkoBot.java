@@ -1,6 +1,6 @@
 package bot;
 
-import commands.ZanuliatorComand;
+import commands.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
@@ -12,10 +12,14 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
  * Created by trm_cp on 3/18/17.
  */
 public class KotletkoBot extends TelegramLongPollingCommandBot {
+
 //    private static final String LOGTAG = "KOTLETKOBOT";
 
     public KotletkoBot(){
-        register(new ZanuliatorComand());
+        register(new StartCommand());
+        register(new FeedbackCommand());
+        HelpCommand helpCommand = new HelpCommand(this);
+        register(helpCommand);
     }
 
     public void processNonCommandUpdate(Update update) {

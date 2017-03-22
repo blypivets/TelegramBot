@@ -6,6 +6,10 @@ package commands;
 public class Commands {
 
     public static final String commandInitChar = "/";
-    // Zanuliator comand
-    public static final String zanuliatorComand = commandInitChar + "zanuliator";
+
+    public static final String helloCommand = commandInitChar + "hello";
+
+    public static final String startCommand = commandInitChar + "start";
+
+    public static final String feedbackCommand = commandInitChar + "feedback";
 }
