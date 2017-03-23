@@ -24,6 +24,8 @@ public class HelpCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
+        //TODO: Create new SUPER PUPER help message.
+
         StringBuilder helpMessageBuilder = new StringBuilder("<b>Help</b>\n");
         helpMessageBuilder.append("These are the registered commands for this Bot:\n\n");
 

@@ -18,12 +18,14 @@ public class StartCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
+        //TODO: Create new SUPER PUPER start message.
+
         StringBuilder messageBuilder = new StringBuilder();
 
         String userName = user.getFirstName() + " " + user.getLastName();
         messageBuilder.append("Welcome ").append(userName).append("\n");
         messageBuilder.append("This bot can help you with learning SQL. ");
-        messageBuilder.append("Execute /help to get more information.");
+        messageBuilder.append("Execute /help to get more information about other commands.");
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());

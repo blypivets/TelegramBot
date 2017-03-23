@@ -18,11 +18,13 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
     public KotletkoBot(){
         register(new StartCommand());
         register(new FeedbackCommand());
+        register(new PracticeCommand());
         HelpCommand helpCommand = new HelpCommand(this);
         register(helpCommand);
     }
 
     public void processNonCommandUpdate(Update update) {
+
         if (update.hasMessage()) {
             Message message = update.getMessage();
 
