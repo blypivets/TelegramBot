@@ -1,19 +1,14 @@
 package commands;
 
-import org.telegram.telegrambots.api.methods.AnswerCallbackQuery;
-import org.telegram.telegrambots.api.methods.AnswerInlineQuery;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
-import org.telegram.telegrambots.api.objects.games.CallbackGame;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +70,6 @@ public class PracticeCommand extends BotCommand {
         row4.add(button7);
         row4.add(button8);
 
-
         keyboard.add(row1);
         keyboard.add(row2);
         keyboard.add(row3);
@@ -86,18 +80,12 @@ public class PracticeCommand extends BotCommand {
 
         CallbackQuery callbackQuery = new CallbackQuery();
 
-
         try {
             absSender.sendMessage(message);
         } catch (Throwable e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
+        
         /*if (strings != null && strings.length > 0) {
 
             if(Integer.parseInt(strings[0]) == 3){

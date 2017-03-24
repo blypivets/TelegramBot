@@ -13,5 +13,8 @@ public class Commands {
 
     public static final String feedbackCommand = commandInitChar + "feedback";
 
+
     public static final String practiceCommand = commandInitChar + "practice";
+
+    public static final String lectureCommand = commandInitChar + "lecture";
 }

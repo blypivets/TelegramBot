@@ -4,7 +4,6 @@ import commands.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
@@ -16,6 +15,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 //    private static final String LOGTAG = "KOTLETKOBOT";
 
     public KotletkoBot(){
+        register(new LectureCommand(this));
         register(new StartCommand());
         register(new FeedbackCommand());
         register(new PracticeCommand());
