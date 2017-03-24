@@ -10,9 +10,7 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboar
 import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
+import java.util.*;
 
 public class KotletkoBot extends TelegramLongPollingCommandBot {
 
@@ -29,13 +27,27 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 
     public void processNonCommandUpdate(Update update) {
 
+        ArrayList<String> helloList = new ArrayList<>();
+
+        helloList.add("Hi!");
+        helloList.add("Hello!");
+        helloList.add("Hail!");
+        helloList.add("Cheer!");
+        helloList.add("Cheer!");
+        helloList.add("Hola");
+        helloList.add("Salut!");
+        helloList.add("Ciao!");
+        helloList.add("Buenos dias!");
+
         if (update.hasMessage()) {
             Message message = update.getMessage();
 
             if (message.hasText()) {
                 SendMessage echoMessage = new SendMessage();
                 echoMessage.setChatId(message.getChatId());
-                echoMessage.setText("Дядьку, введи команду!!!\n");
+                Random random = new Random();
+
+                echoMessage.setText(helloList.get(random.nextInt(7))+"\n");
 
                 try {
                     sendMessage(echoMessage);
