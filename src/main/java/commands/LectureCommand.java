@@ -3,12 +3,17 @@ package commands;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * Created by trm_cp on 3/22/17.
@@ -33,50 +38,39 @@ public class LectureCommand extends BotCommand {
         SortedMap<Integer,String> lectureNames = getLectureNames();
         SortedMap<Integer,ArrayList<String>> lectureLinks = getLectureLinks();
 
+        lectureMessageBuilder.append("Бе бе бе, обери лекцію.\n");
+        lectureMessageBuilder.append("These are the list of lectures:\n\n");
 
-        if (arguments != null && arguments.length > 0) {
-            for (String id: arguments){
-                int lectureID = Integer.parseInt(id);
-                for (String link: lectureLinks.get(lectureID)){
-                    linksToSend.add("<a href=\"" +link +"\">" + lectureNames.get(lectureID) + "</a>");
-                }
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
+        for (Integer id : lectureNames.keySet()) {
 
-            }
-        }else{
-            lectureMessageBuilder.append("Бе бе бе, введи id.\n");
-            lectureMessageBuilder.append("These are the list of lectures:\n\n");
-            for (Integer id : lectureNames.keySet()) {
-                lectureMessageBuilder.append(lectureNames.get(id)).append("\n");
-            }
+            List<InlineKeyboardButton> row = new ArrayList<>();
+            InlineKeyboardButton button = new InlineKeyboardButton();
+            button.setText(lectureNames.get(id));
+            button.setCallbackData("lecture " + id);
+
+            row.add(button);
+            keyboard.add(row);
         }
+        markup.setKeyboard(keyboard);
 
         SendMessage lectureMessage = new SendMessage();
         lectureMessage.setChatId(chat.getId().toString());
         lectureMessage.enableHtml(true);
         lectureMessage.setText(lectureMessageBuilder.toString());
-
-        ArrayList<SendMessage> linksMessages = new ArrayList<>();
-        for (String link: linksToSend){
-            SendMessage message = new SendMessage();
-            message.setChatId(chat.getId().toString());
-            message.enableHtml(true);
-            message.setText(link);
-            linksMessages.add(message);
-        }
+        lectureMessage.setReplyMarkup(markup);
 
         try {
             absSender.sendMessage(lectureMessage);
-            for (SendMessage message: linksMessages){
-                absSender.sendMessage(message);
-            }
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
     }
 
 
-    private  SortedMap<Integer,String> getLectureNames(){
+    public static SortedMap<Integer,String> getLectureNames(){
         SortedMap<Integer,String> lectureNames = new TreeMap<>();
         lectureNames.put(1,"Лекция 1-2. Вступление. Табличная модель");
         lectureNames.put(2,"Лекция 3. Простые запросы");
@@ -94,24 +88,51 @@ public class LectureCommand extends BotCommand {
         return lectureNames;
     }
 
-    private SortedMap<Integer,ArrayList <String>> getLectureLinks() {
+    public static SortedMap<Integer,ArrayList <String>> getLectureLinks() {
         SortedMap<Integer, ArrayList<String>> lectureLinks = new TreeMap<>();
-        lectureLinks.put(1, new ArrayList<String>());
 
+        lectureLinks.put(1, new ArrayList<String>());
         lectureLinks.get(1).add("http://dl.sumdu.edu.ua/e-pub/db-in/523092/4.1_%D0%A1%D0%BE%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86.pdf?1487840405");
         lectureLinks.get(1).add("http://dl.sumdu.edu.ua/e-pub/db-in/523093/4.2_%D0%A1%D1%81%D1%8B%D0%BB%D0%BE%D1%87%D0%BD%D0%B0%D1%8F_%D1%86%D0%B5%D0%BB%D0%BE%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C.pdf?1487840405");
 
         lectureLinks.put(2, new ArrayList<String>());
+        lectureLinks.get(2).add("http://dl.sumdu.edu.ua/e-pub/db-in/523103/5_SQL_plus.pdf?1487840405");
+
         lectureLinks.put(3, new ArrayList<String>());
+        lectureLinks.get(3).add("http://dl.sumdu.edu.ua/e-pub/db-in/523105/6_WHERE.pdf?1487840405");
+
         lectureLinks.put(4, new ArrayList<String>());
+        lectureLinks.get(4).add("http://dl.sumdu.edu.ua/e-pub/db-in/523107/7_%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8_%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9_%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8.pdf?1487840405");
+
         lectureLinks.put(5, new ArrayList<String>());
+        lectureLinks.get(5).add("http://dl.sumdu.edu.ua/e-pub/db-in/523109/8_1_%D0%92%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5_%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D1%8B.pdf?1487840405");
+        lectureLinks.get(5).add("http://dl.sumdu.edu.ua/e-pub/db-in/523110/8_2_part_or_ordered_query.pptx?1487840405");
+
         lectureLinks.put(6, new ArrayList<String>());
+        lectureLinks.get(6).add("http://dl.sumdu.edu.ua/e-pub/db-in/523128/9_DML.pdf?1487840405");
+        lectureLinks.get(6).add("http://dl.sumdu.edu.ua/e-pub/db-in/523133/9_2_%D0%92%D0%B8%D0%B4%D1%8B.pdf?1487840405");
+        lectureLinks.get(6).add("http://dl.sumdu.edu.ua/e-pub/db-in/523132/8_2_SET.pdf?1487840405");
+
         lectureLinks.put(7, new ArrayList<String>());
+        lectureLinks.get(7).add("http://dl.sumdu.edu.ua/e-pub/db-in/523130/10_JOIN.pdf?1487840405");
+
         lectureLinks.put(8, new ArrayList<String>());
+        lectureLinks.get(8).add("http://dl.sumdu.edu.ua/e-pub/db-in/523145/11_Group.pdf?1487840405");
+
         lectureLinks.put(9, new ArrayList<String>());
+        lectureLinks.get(9).add("http://dl.sumdu.edu.ua/e-pub/db-in/523147/12_tranastion.pdf?1487840405");
+
         lectureLinks.put(10, new ArrayList<String>());
+        lectureLinks.get(10).add("http://dl.sumdu.edu.ua/e-pub/db-in/523149/13_Index_Sequence_Triggers.pdf?1487840405");
+
         lectureLinks.put(11, new ArrayList<String>());
+        lectureLinks.get(11).add("http://dl.sumdu.edu.ua/e-pub/db-in/523151/14_%D0%98%D0%B5%D1%80%D0%B0%D1%80%D1%85%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5_%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.pdf?1487840405");
+        lectureLinks.get(11).add("http://dl.sumdu.edu.ua/e-pub/db-in/536995/lecture.pdf?1487840405");
+
         lectureLinks.put(12, new ArrayList<String>());
+        lectureLinks.get(12).add("http://dl.sumdu.edu.ua/e-pub/db-in/523155/15_%D0%9C%D0%B5%D1%82%D0%B0%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C.pdf?1487840405");
+        lectureLinks.get(12).add("http://dl.sumdu.edu.ua/e-pub/db-in/523157/280-263.pdf?1487840405");
+
         return lectureLinks;
     }
 }
