@@ -52,9 +52,7 @@ public class LectureCommand extends BotCommand {
                     }
                 }
 
-                StringBuilder url = new StringBuilder(lectureLinks.get(id).get(i));
-
-                button.setUrl(url.toString());
+                button.setUrl(lectureLinks.get(id).get(i));
                 button.setText(lectureLabel);
 //            button.setUrl(url.toString());
 //            button.setText(lectureNames.get(id));

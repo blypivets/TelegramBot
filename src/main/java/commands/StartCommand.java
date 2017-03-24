@@ -22,8 +22,8 @@ public class StartCommand extends BotCommand {
 
         StringBuilder messageBuilder = new StringBuilder();
 
-        String userName = user.getFirstName() == null? " ": user.getFirstName() + " "
-                + user.getLastName() == null?" ": user.getLastName() ;
+        String userName = (user.getFirstName() == null? " ": user.getFirstName()) + " "
+                + (user.getLastName() == null?" ": user.getLastName() );
         messageBuilder.append("Welcome ").append(userName).append("\n");
         messageBuilder.append("This bot can help you with learning SQL. ");
         messageBuilder.append("Execute /help to get more information about other commands.");
