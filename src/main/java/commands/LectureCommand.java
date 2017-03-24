@@ -7,7 +7,6 @@ import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
-import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
@@ -15,28 +14,20 @@ import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-/**
- * Created by trm_cp on 3/22/17.
- */
 public class LectureCommand extends BotCommand {
 
     //private static final String LOGTAG = "LECTURECOMMAND";
 
-    private final ICommandRegistry commandRegistry;
-
-    public LectureCommand(ICommandRegistry commandRegistry) {
+    public LectureCommand() {
         super("lecture", "Get list of lectures or lecture specified by id");
-        this.commandRegistry = commandRegistry;
     }
 
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
 
         StringBuilder lectureMessageBuilder = new StringBuilder("<b>Lectures</b>\n");
-        ArrayList<String> linksToSend = new ArrayList<>();
 
         SortedMap<Integer,String> lectureNames = getLectureNames();
-        SortedMap<Integer,ArrayList<String>> lectureLinks = getLectureLinks();
 
         lectureMessageBuilder.append("Бе бе бе, обери лекцію.\n");
         lectureMessageBuilder.append("These are the list of lectures:\n\n");
