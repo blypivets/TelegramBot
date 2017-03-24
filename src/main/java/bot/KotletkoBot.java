@@ -4,8 +4,13 @@ import commands.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by trm_cp on 3/18/17.
@@ -14,7 +19,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 
 //    private static final String LOGTAG = "KOTLETKOBOT";
 
-    public KotletkoBot(){
+    public KotletkoBot() {
         register(new LectureCommand(this));
         register(new StartCommand());
         register(new FeedbackCommand());
@@ -31,7 +36,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
             if (message.hasText()) {
                 SendMessage echoMessage = new SendMessage();
                 echoMessage.setChatId(message.getChatId());
-                echoMessage.setText("Дядьку, введи команду!!!\n" );
+                echoMessage.setText("Дядьку, введи команду!!!\n");
 
                 try {
                     sendMessage(echoMessage);
