@@ -28,8 +28,9 @@ public class LectureCommand extends BotCommand {
         StringBuilder lectureMessageBuilder = new StringBuilder("<b>Lectures</b>\n");
 
         SortedMap<Integer,String> lectureNames = getLectureNames();
+        SortedMap<Integer,ArrayList<String>> lectureLinks = getLectureLinks();
 
-        lectureMessageBuilder.append("Бе бе бе, обери лекцію.\n");
+        lectureMessageBuilder.append("Ghoose one of lectures\n");
         lectureMessageBuilder.append("These are the list of lectures:\n\n");
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
@@ -37,13 +38,32 @@ public class LectureCommand extends BotCommand {
 
         for (Integer id : lectureNames.keySet()) {
 
-            List<InlineKeyboardButton> row = new ArrayList<>();
-            InlineKeyboardButton button = new InlineKeyboardButton();
-            button.setText(lectureNames.get(id));
-            button.setCallbackData("lecture " + id);
+            for (int i = 0; i < lectureLinks.get(id).size(); i++){
+                List<InlineKeyboardButton> row = new ArrayList<>();
+                InlineKeyboardButton button = new InlineKeyboardButton();
 
-            row.add(button);
-            keyboard.add(row);
+                String lectureLabel = lectureNames.get(id);
+                if (lectureLinks.get(id).size() > 1){
+                    String[] lectureLabelArray = lectureLabel.split(" ");
+                    lectureLabelArray[1] = lectureLabelArray[1] + (i + 1);
+                    lectureLabel = " ";
+                    for (String partOfLabel : lectureLabelArray){
+                        lectureLabel += partOfLabel + " ";
+                    }
+                }
+
+                StringBuilder url = new StringBuilder(lectureLinks.get(id).get(i));
+
+                button.setUrl(url.toString());
+                button.setText(lectureLabel);
+//            button.setUrl(url.toString());
+//            button.setText(lectureNames.get(id));
+                //button.setCallbackData("lecture " + id);
+
+                row.add(button);
+                keyboard.add(row);
+            }
+
         }
         markup.setKeyboard(keyboard);
 

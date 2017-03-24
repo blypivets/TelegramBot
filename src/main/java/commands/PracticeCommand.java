@@ -1,7 +1,6 @@
 package commands;
 
 import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -27,12 +26,12 @@ public class PracticeCommand extends BotCommand {
         message.setChatId(chat.getId());
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
-        List<List<InlineKeyboardButton>> keyboard = new ArrayList();
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
-        List<InlineKeyboardButton> row1 = new ArrayList();
-        List<InlineKeyboardButton> row2 = new ArrayList();
-        List<InlineKeyboardButton> row3 = new ArrayList();
-        List<InlineKeyboardButton> row4 = new ArrayList();
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        List<InlineKeyboardButton> row3 = new ArrayList<>();
+        List<InlineKeyboardButton> row4 = new ArrayList<>();
 
         InlineKeyboardButton button1 = new InlineKeyboardButton();
         button1.setText("Практика 1");
