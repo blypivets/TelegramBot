@@ -2,6 +2,7 @@ package bot;
 
 import commands.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
@@ -10,15 +11,12 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.SortedMap;
 
-/**
- * Created by trm_cp on 3/18/17.
- */
 public class KotletkoBot extends TelegramLongPollingCommandBot {
 
 //    private static final String LOGTAG = "KOTLETKOBOT";
 
     public KotletkoBot() {
-        register(new LectureCommand(this));
+        register(new LectureCommand());
         register(new StartCommand());
         register(new FeedbackCommand());
         register(new PracticeCommand());
@@ -60,20 +58,24 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                         linksToSend.add("<a href=\"" + link + "\">" + lectureNames.get(lectureId) + "</a>");
                     }
 
-                    ArrayList<SendMessage> linksMessages = new ArrayList<>();
+                    ArrayList<EditMessageText> linksMessages = new ArrayList<>();
                     for (String link : linksToSend) {
-                        SendMessage message = new SendMessage();
-                        message.setChatId(update.getCallbackQuery().getMessage().getChatId().toString());
-                        message.enableHtml(true);
-                        message.setText(link);
-                        linksMessages.add(message);
+
+
+                        EditMessageText editMessage = new EditMessageText();
+                        editMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
+                        editMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
+                        editMessage.enableHtml(true);
+                        editMessage.setText(link);
+                        linksMessages.add(editMessage);
                     }
 
+
                     try {
-                        for (SendMessage message : linksMessages) {
-                            sendMessage(message);
+                        for (EditMessageText messageText: linksMessages){
+                            editMessageText(messageText);
                         }
-                    } catch (TelegramApiException e) {
+                    } catch (Throwable e) {
                         e.printStackTrace();
                     }
                     break;
