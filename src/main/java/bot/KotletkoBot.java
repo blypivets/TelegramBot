@@ -113,6 +113,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                 case "next":
                     int nextPracticeId = Integer.parseInt(callback.split(" ")[1]);
                     int taskId = Integer.parseInt(callback.split(" ")[2]);
+                    int tmpTask = taskId+1;
 
                     InlineKeyboardMarkup nextMarkup = new InlineKeyboardMarkup();
 
@@ -121,7 +122,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 
                     InlineKeyboardButton button2 = new InlineKeyboardButton();
                     button2.setText("Следующее");
-                    button2.setCallbackData("next " + nextPracticeId + " " + taskId++);
+                    button2.setCallbackData("next " + nextPracticeId + " " + tmpTask);
 
                     nextRow1.add(button2);
                     nextKeyboard.add(nextRow1);

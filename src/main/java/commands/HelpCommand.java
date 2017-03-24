@@ -29,9 +29,10 @@ public class HelpCommand extends BotCommand {
         StringBuilder helpMessageBuilder = new StringBuilder("<b>Help</b>\n");
         helpMessageBuilder.append("These are the registered commands for this Bot:\n\n");
 
-        for (BotCommand botCommand : commandRegistry.getRegisteredCommands()) {
-            helpMessageBuilder.append(botCommand.toString()).append("\n\n");
-        }
+        helpMessageBuilder.append("/start - With this command you can start the bot.\n");
+        helpMessageBuilder.append("/lecture - Get list of lectures or lecture specified by id\n");
+        helpMessageBuilder.append("/practice - Get list of practice and tasks\n");
+        helpMessageBuilder.append("/feedback - KotletkoBot welcomes your feedback\n");
 
         SendMessage helpMessage = new SendMessage();
         helpMessage.setChatId(chat.getId().toString());
