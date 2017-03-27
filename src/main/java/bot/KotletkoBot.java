@@ -44,12 +44,20 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
             Message message = update.getMessage();
 
             if (message.hasText()) {
+
                 SendMessage echoMessage = new SendMessage();
                 echoMessage.setChatId(message.getChatId());
                 Random random = new Random();
 
-                echoMessage.setText(helloList.get(random.nextInt(9))+"\n");
-
+                if (EmojiParser.parseToUnicode(message.getText()).equals(EmojiParser.parseToUnicode(":muscle:"))){
+                    echoMessage.setText("Воу воу полегче!");
+                }else if (EmojiParser.parseToUnicode(message.getText()).equals(EmojiParser.parseToUnicode(":man_with_turban:"))){
+                    echoMessage.setText("@b_Lip");
+                }else if (EmojiParser.parseToUnicode(message.getText()).equals(EmojiParser.parseToUnicode(":baby:"))){
+                    echoMessage.setText("@vshurig");
+                }else {
+                    echoMessage.setText(helloList.get(random.nextInt(9))+"\n");
+                }
                 try {
                     sendMessage(echoMessage);
                 } catch (TelegramApiException e) {
