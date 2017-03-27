@@ -1,5 +1,6 @@
 package commands;
 
+import database.ConnectionDB;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
@@ -8,6 +9,8 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboar
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
@@ -17,9 +20,13 @@ import java.util.TreeMap;
  * Created by Victor on 22.03.2017.
  */
 public class PracticeCommand extends BotCommand {
-    public PracticeCommand() {super("practice", "practic.." );}
+    public PracticeCommand() {super("practice", "practic.." );
+    //init();
+    }
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
+
+        SortedMap<Integer, ArrayList<String>> practiceLinks = new TreeMap<>();
 
         SendMessage message = new SendMessage();
         message.setText("Выбери практику по которой хочешь получить задание");
@@ -81,6 +88,25 @@ public class PracticeCommand extends BotCommand {
             e.printStackTrace();
         }
     }
+
+    /*public void init(){
+
+        ConnectionDB connectionDB = new ConnectionDB();
+
+        try {
+            ResultSet resultSet = connectionDB.runSqlQuery("select * from practice_task");
+
+            System.out.println(resultSet.getArray(1));
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }*/
+
     public static SortedMap<Integer,ArrayList<String>> getPractice (){
         SortedMap<Integer, ArrayList<String>> practiceLinks = new TreeMap<>();
 

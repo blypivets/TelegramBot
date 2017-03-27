@@ -1,5 +1,6 @@
 package bot;
 
+import com.vdurmont.emoji.EmojiParser;
 import commands.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
@@ -33,7 +34,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
         helloList.add("Hello!");
         helloList.add("Hail!");
         helloList.add("Cheer!");
-        helloList.add("Cheer!");
+        helloList.add(EmojiParser.parseToUnicode("Don't worry be happy:smile::smile::smile:"));
         helloList.add("Hola");
         helloList.add("Salut!");
         helloList.add("Ciao!");
@@ -47,7 +48,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                 echoMessage.setChatId(message.getChatId());
                 Random random = new Random();
 
-                echoMessage.setText(helloList.get(random.nextInt(7))+"\n");
+                echoMessage.setText(helloList.get(random.nextInt(9))+"\n");
 
                 try {
                     sendMessage(echoMessage);
@@ -96,9 +97,6 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 
                 case "practice":
 
-                    System.out.println(update.getCallbackQuery().getMessage().getText());
-
-
                     int practiceId = Integer.parseInt(callback.split(" ")[1]);
                     InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
@@ -127,7 +125,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     break;
                 case "next":
 
-                    String[] callbackArr = callback.split(" ");
+                  /*  String[] callbackArr = callback.split(" ");
 
                     InlineKeyboardMarkup currentMarcup = new InlineKeyboardMarkup();
                     List<List<InlineKeyboardButton>> currentKeyboard = new ArrayList<>();
@@ -150,7 +148,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                         editMessageText(editMessageText);
                     } catch (TelegramApiException e) {
                         e.printStackTrace();
-                    }
+                    }*/
 
                     int nextPracticeId = Integer.parseInt(callback.split(" ")[1]);
                     int taskId = Integer.parseInt(callback.split(" ")[2]);

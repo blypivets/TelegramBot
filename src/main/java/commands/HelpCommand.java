@@ -1,5 +1,6 @@
 package commands;
 
+import com.vdurmont.emoji.EmojiParser;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
@@ -26,13 +27,15 @@ public class HelpCommand extends BotCommand {
 
         //TODO: Create new SUPER PUPER help message.
 
-        StringBuilder helpMessageBuilder = new StringBuilder("<b>Help</b>\n");
-        helpMessageBuilder.append("These are the registered commands for this Bot:\n\n");
+        StringBuilder helpMessageBuilder = new StringBuilder();
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("Вот список команд, которые помогут тебе управлять ботом:\n\n"));
 
-        helpMessageBuilder.append("/start - With this command you can start the bot.\n");
-        helpMessageBuilder.append("/lecture - Get list of lectures or lecture specified by id\n");
-        helpMessageBuilder.append("/practice - Get list of practice and tasks\n");
-        helpMessageBuilder.append("/feedback - KotletkoBot welcomes your feedback\n");
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/start - Начать использование бота:rocket:\n\n"));
+        helpMessageBuilder.append( EmojiParser.parseToUnicode("/init - Скачать необходимые файлы для установки и настройки БД, создания таблиц :arrow_down::white_check_mark:\n\n"));
+        helpMessageBuilder.append( EmojiParser.parseToUnicode("/lecture - Здесь ты можешь скачать лекции:book::mag:\n\n"));
+        helpMessageBuilder.append( EmojiParser.parseToUnicode("/practice - Получить задания по интересующей тебя практике:scream_cat::fire:\n\n"));
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/prolevel - Скучно и одиноко? Сделал все задания? Тогда тебе сюда, смельчак:hugging::nerdy:\n\n "));
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/feedback - Возможность высказаться?:loudspeaker::phone::mailbox_with_mail:\n "));
 
         SendMessage helpMessage = new SendMessage();
         helpMessage.setChatId(chat.getId().toString());
