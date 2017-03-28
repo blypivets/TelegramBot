@@ -17,8 +17,6 @@ public class FeedbackCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
-        //TODO Realize a feedback command
-
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
         answer.setText(EmojiParser.parseToUnicode("Идеи, отзывы или найденные баги присылайте сюда: \n\n@b_Lip:man_with_turban: \n@vshurig:baby: "));

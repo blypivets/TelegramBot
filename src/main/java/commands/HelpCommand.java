@@ -25,8 +25,6 @@ public class HelpCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
-        //TODO: Create new SUPER PUPER help message.
-
         StringBuilder helpMessageBuilder = new StringBuilder();
         helpMessageBuilder.append(EmojiParser.parseToUnicode("Вот список команд, которые помогут тебе управлять ботом:\n\n"));
 
@@ -35,7 +33,7 @@ public class HelpCommand extends BotCommand {
         helpMessageBuilder.append( EmojiParser.parseToUnicode("/lecture - Здесь ты можешь скачать лекции:book::mag:\n\n"));
         helpMessageBuilder.append( EmojiParser.parseToUnicode("/practice - Получить задания по интересующей тебя практике:scream_cat::fire:\n\n"));
         helpMessageBuilder.append(EmojiParser.parseToUnicode("/prolevel - Скучно и одиноко? Сделал все задания? Тогда тебе сюда, смельчак:hugging::nerdy:\n\n "));
-        helpMessageBuilder.append(EmojiParser.parseToUnicode("/feedback - Возможность высказаться?:loudspeaker::phone::mailbox_with_mail:\n "));
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/feedback - Возможность высказаться:loudspeaker::phone::mailbox_with_mail:\n "));
 
         SendMessage helpMessage = new SendMessage();
         helpMessage.setChatId(chat.getId().toString());

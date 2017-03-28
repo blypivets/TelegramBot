@@ -21,8 +21,6 @@ public class StartCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
-        //TODO: Create new SUPER PUPER start message.
-
         StringBuilder messageBuilder = new StringBuilder();
 
        //char[] smile = Character.toChars("\ud83d");
