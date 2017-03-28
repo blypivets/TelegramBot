@@ -8,8 +8,6 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import static javafx.scene.input.KeyCode.U;
-
 /**
  * Created by Victor on 22.03.2017.
  */
@@ -22,8 +20,6 @@ public class StartCommand extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
         StringBuilder messageBuilder = new StringBuilder();
-
-       //char[] smile = Character.toChars("\ud83d");
 
         String userName = (user.getFirstName() == null? "": user.getFirstName()) +
                  (user.getLastName() == null?"": " "+ user.getLastName());
