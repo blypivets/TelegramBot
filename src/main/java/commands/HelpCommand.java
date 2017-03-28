@@ -29,9 +29,9 @@ public class HelpCommand extends BotCommand {
         helpMessageBuilder.append(EmojiParser.parseToUnicode("Вот список команд, которые помогут тебе управлять ботом:\n\n"));
 
         helpMessageBuilder.append(EmojiParser.parseToUnicode("/start - Начать использование бота:rocket:\n\n"));
-        helpMessageBuilder.append( EmojiParser.parseToUnicode("/init - Скачать необходимые файлы для установки и настройки БД, создания таблиц :arrow_down::white_check_mark:\n\n"));
-        helpMessageBuilder.append( EmojiParser.parseToUnicode("/lecture - Здесь ты можешь скачать лекции:book::mag:\n\n"));
-        helpMessageBuilder.append( EmojiParser.parseToUnicode("/practice - Получить задания по интересующей тебя практике:scream_cat::fire:\n\n"));
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/init - Скачать необходимые файлы для установки и настройки БД, создания таблиц :arrow_down::white_check_mark:\n\n"));
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/lecture - Здесь ты можешь скачать лекции:book::mag:\n\n"));
+        helpMessageBuilder.append(EmojiParser.parseToUnicode("/practice - Получить задания по интересующей тебя практике:scream_cat::fire:\n\n"));
         helpMessageBuilder.append(EmojiParser.parseToUnicode("/prolevel - Скучно и одиноко? Сделал все задания? Тогда тебе сюда, смельчак:hugging::nerdy:\n\n "));
         helpMessageBuilder.append(EmojiParser.parseToUnicode("/feedback - Возможность высказаться:loudspeaker::phone::mailbox_with_mail:\n "));
 

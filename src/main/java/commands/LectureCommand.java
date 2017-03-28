@@ -25,13 +25,10 @@ public class LectureCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
 
-        StringBuilder lectureMessageBuilder = new StringBuilder("<b>Lectures</b>\n");
+        StringBuilder lectureMessageBuilder = new StringBuilder("<b>Список лекций:\n\n</b>\n");
 
         SortedMap<Integer,String> lectureNames = getLectureNames();
         SortedMap<Integer,ArrayList<String>> lectureLinks = getLectureLinks();
-
-        lectureMessageBuilder.append("Ghoose one of lectures\n");
-        lectureMessageBuilder.append("These are the list of lectures:\n\n");
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
