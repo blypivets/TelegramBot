@@ -1,6 +1,5 @@
 package bot;
 
-import com.vdurmont.emoji.EmojiParser;
 import commands.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
@@ -34,7 +33,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
         helloList.add("Hello!");
         helloList.add("Hail!");
         helloList.add("Cheer!");
-        helloList.add(EmojiParser.parseToUnicode("Don't worry be happy:smile::smile::smile:"));
+        helloList.add("Cheer!");
         helloList.add("Hola");
         helloList.add("Salut!");
         helloList.add("Ciao!");
@@ -44,20 +43,12 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
             Message message = update.getMessage();
 
             if (message.hasText()) {
-
                 SendMessage echoMessage = new SendMessage();
                 echoMessage.setChatId(message.getChatId());
                 Random random = new Random();
 
-                if (EmojiParser.parseToUnicode(message.getText()).equals(EmojiParser.parseToUnicode(":muscle:"))){
-                    echoMessage.setText("Воу воу полегче!");
-                }else if (EmojiParser.parseToUnicode(message.getText()).equals(EmojiParser.parseToUnicode(":man_with_turban:"))){
-                    echoMessage.setText("@b_Lip");
-                }else if (EmojiParser.parseToUnicode(message.getText()).equals(EmojiParser.parseToUnicode(":baby:"))){
-                    echoMessage.setText("@vshurig");
-                }else {
-                    echoMessage.setText(helloList.get(random.nextInt(9))+"\n");
-                }
+                echoMessage.setText(helloList.get(random.nextInt(7))+"\n");
+
                 try {
                     sendMessage(echoMessage);
                 } catch (TelegramApiException e) {
@@ -104,7 +95,6 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     break;
 
                 case "practice":
-
                     int practiceId = Integer.parseInt(callback.split(" ")[1]);
                     InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
@@ -132,31 +122,33 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     }
                     break;
                 case "next":
-
-                  /*  String[] callbackArr = callback.split(" ");
-
-                    InlineKeyboardMarkup currentMarcup = new InlineKeyboardMarkup();
-                    List<List<InlineKeyboardButton>> currentKeyboard = new ArrayList<>();
-                    List<InlineKeyboardButton> currentRow = new ArrayList<>();
-                    InlineKeyboardButton currentButton = new InlineKeyboardButton();
-                    currentButton.setText("Следующее");
-                    currentButton.setCallbackData(callback);
-                    currentRow.add(currentButton);
-                    currentKeyboard.add(currentRow);
-                    currentMarcup.setKeyboard(currentKeyboard);
-
-                    SortedMap<Integer, ArrayList<String>> currentPractice = PracticeCommand.getPractice();
-                    EditMessageText editMessageText = new EditMessageText();
-                    editMessageText.setChatId(update.getCallbackQuery().getMessage().getChatId());
-                    editMessageText.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
-                    editMessageText.setText(currentPractice.get(Integer.parseInt(callbackArr[1])).get(Integer.parseInt(callbackArr[2]) - 1));
-                    editMessageText.setReplyMarkup(currentMarcup);
-
-                    try {
-                        editMessageText(editMessageText);
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }*/
+//
+//                    String[] callbackArr = callback.split(" ");
+//
+//                    InlineKeyboardMarkup currentMarcup = new InlineKeyboardMarkup();
+//                    List<List<InlineKeyboardButton>> currentKeyboard = new ArrayList<>();
+//                    List<InlineKeyboardButton> currentRow = new ArrayList<>();
+//                    InlineKeyboardButton currentButton = new InlineKeyboardButton();
+//                    currentButton.setText("Следующее");
+//                    currentButton.setCallbackData(callback);
+//                    currentRow.add(currentButton);
+//                    currentKeyboard.add(currentRow);
+//                    currentMarcup.setKeyboard(currentKeyboard);
+//
+//                    SortedMap<Integer, ArrayList<String>> currentPractice = PracticeCommand.getPractice();
+//                    EditMessageText editMessageText = new EditMessageText();
+//                    editMessageText.setChatId(update.getCallbackQuery().getMessage().getChatId());
+//                    editMessageText.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
+//                    editMessageText.setText(callback);
+//                    editMessageText.setText(currentPractice.get(Integer.parseInt(callbackArr[1])).get(Integer.parseInt(callbackArr[2]) - 1) + "\n\t\tОК");
+//
+//                    editMessageText.setReplyMarkup(currentMarcup);
+//
+//                    try {
+//                        editMessageText(editMessageText);
+//                    } catch (TelegramApiException e) {
+//                        e.printStackTrace();
+//                    }
 
                     int nextPracticeId = Integer.parseInt(callback.split(" ")[1]);
                     int taskId = Integer.parseInt(callback.split(" ")[2]);
