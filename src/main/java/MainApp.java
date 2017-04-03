@@ -17,9 +17,6 @@ public class MainApp {
         ApiContextInitializer.init();
         TelegramBotsApi botsApi = new TelegramBotsApi();
 
-        ServerSocket ss = new ServerSocket(2234);
-        Socket accept = ss.accept();
-
         try {
             botsApi.registerBot(new KotletkoBot());
         } catch (TelegramApiException e) {
