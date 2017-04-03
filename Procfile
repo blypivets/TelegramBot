@@ -1,1 +1,1 @@
-web:    java -jar target/TelegramBot-1.0-SNAPSHOT.jar -p $2234
+web:    java -jar target/TelegramBot-1.0-SNAPSHOT.jar -p 2234
