@@ -1,1 +1,1 @@
-web: target/* -Dhttp.port=$PORT $JAVA_OPTS
+web: target/* -Dhttp.port=$PORT $JAVA_OPTS 
