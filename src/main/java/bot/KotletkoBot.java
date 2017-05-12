@@ -185,7 +185,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
     }
 
     public String getBotUsername() {
-        return "KotletkoBot";
+        return "EagleBot";
     }
 
     public String getBotToken() {
