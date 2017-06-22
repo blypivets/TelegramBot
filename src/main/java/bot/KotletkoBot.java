@@ -189,6 +189,6 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
     }
 
     public String getBotToken() {
-        return "377951187:AAH1KVvP69jTRyK_0GFwx9SjLEda02lSktc";
+        return System.getenv("PRODUCTION_BOT_TOKEN");
     }
 }
