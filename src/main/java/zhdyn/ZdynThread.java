@@ -12,6 +12,13 @@ public class ZdynThread extends Thread {
     @Override
     public void run() {
 
+        /*--Для проверки конекшн с базой
+
+        ConnectionDB connectionDB = new ConnectionDB();
+
+        connectionDB.connection();*/
+
+
         System.out.println(System.getenv("PORT"));
         int port = Integer.parseInt(System.getenv("PORT"));
 

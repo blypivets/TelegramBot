@@ -10,35 +10,53 @@ import java.sql.*;
  */
 public class ConnectionDB {
 
-    private Connection currentConection;
+    private Connection connection = null;
 
-    public ConnectionDB() {
-        this.currentConection = openConexion();
-    }
+    public void connection(){
 
-    private Connection openConexion(){
-
-        Connection connection = null;
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "TELEGRAMBOTSQL", "kotletkobot");
-        } catch (SQLException | ClassNotFoundException e) {
+
+            Class.forName("org.postgresql.Driver");
+
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return connection;
+
+
+        //!!!!!!-------Добавить переменные окружения с нужными значениями--------!!!!!!!!!!
+        String dbName = System.getenv("???");
+        String userName = System.getenv("???");
+        String password = System.getenv("???");
+
+        //!!!!!!------Подставить стринги в getConnection
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://127.0.0.1:5432/test_db",
+                    "test_user",
+                    "qwerty");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (connection != null) {
+            System.out.println("Connection complete!");
+        } else {
+            System.out.println("Failed to make connection!");
+        }
     }
 
     public void closeConexion() {
         try {
-            this.currentConection.close();
+            this.connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public ResultSet runSqlQuery(String query) throws SQLException {
-        final Statement statement;
-        statement = this.currentConection.createStatement();
+        Statement statement;
+        statement = this.connection.createStatement();
         return statement.executeQuery(query);
     }
 }
