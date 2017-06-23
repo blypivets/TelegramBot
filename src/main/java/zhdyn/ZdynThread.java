@@ -1,5 +1,7 @@
 package zhdyn;
 
+import database.ConnectionDB;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,12 +14,13 @@ public class ZdynThread extends Thread {
     @Override
     public void run() {
 
-        /*--Для проверки конекшн с базой
+
 
         ConnectionDB connectionDB = new ConnectionDB();
 
-        connectionDB.connection();*/
+        connectionDB.connection();
 
+/*
 
         System.out.println(System.getenv("PORT"));
         int port = Integer.parseInt(System.getenv("PORT"));
@@ -38,6 +41,7 @@ public class ZdynThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
 
 
     }

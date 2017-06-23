@@ -22,18 +22,16 @@ public class ConnectionDB {
             e.printStackTrace();
         }
 
+        String dbName = System.getenv("DATABASE_NAME");
+        String userName = System.getenv("USER_NAME");
+        String password = System.getenv("PASSWORD_DB");
 
-        //!!!!!!-------Добавить переменные окружения с нужными значениями--------!!!!!!!!!!
-        String dbName = System.getenv("???");
-        String userName = System.getenv("???");
-        String password = System.getenv("???");
-
-        //!!!!!!------Подставить стринги в getConnection
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432/test_db",
-                    "test_user",
-                    "qwerty");
+                    "jdbc:postgresql://127.0.0.1:5432/" +
+                    dbName,
+                    userName,
+                    password);
 
         } catch (SQLException e) {
             e.printStackTrace();
