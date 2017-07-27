@@ -16,8 +16,6 @@ import java.util.TreeMap;
 
 public class LectureCommand extends BotCommand {
 
-    //private static final String LOGTAG = "LECTURECOMMAND";
-
     public LectureCommand() {
         super("lecture", "Get list of lectures or lecture specified by id");
     }

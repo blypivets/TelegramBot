@@ -6,6 +6,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class ZdynThread extends Thread {
@@ -14,11 +16,24 @@ public class ZdynThread extends Thread {
     @Override
     public void run() {
 
+      /*  try {
 
+            ConnectionDB connectionDB = new ConnectionDB();
+            connectionDB.connection();
 
-        ConnectionDB connectionDB = new ConnectionDB();
+            ResultSet rs = connectionDB.runSqlQuery("select * from emp");
 
-        connectionDB.connection();
+            while (rs.next()){
+                System.out.println(rs.getString("ename"));
+            }
+
+            rs.close();
+            connectionDB.closeConexion();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+*/
 
 /*
 

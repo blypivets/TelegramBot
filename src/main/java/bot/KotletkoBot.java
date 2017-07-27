@@ -14,8 +14,6 @@ import java.util.*;
 
 public class KotletkoBot extends TelegramLongPollingCommandBot {
 
-//    private static final String LOGTAG = "KOTLETKOBOT";
-
     public KotletkoBot() {
         register(new LectureCommand());
         register(new StartCommand());
@@ -75,7 +73,6 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     ArrayList<EditMessageText> linksMessages = new ArrayList<>();
                     for (String link : linksToSend) {
 
-
                         EditMessageText editMessage = new EditMessageText();
                         editMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
                         editMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
@@ -83,8 +80,6 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                         editMessage.setText(link);
                         linksMessages.add(editMessage);
                     }
-
-
                     try {
                         for (EditMessageText messageText : linksMessages) {
                             editMessageText(messageText);
@@ -95,90 +90,55 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     break;
 
                 case "practice":
+
                     int practiceId = Integer.parseInt(callback.split(" ")[1]);
                     InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
+                    SortedMap<Integer, String> practiceInURL = PracticeCommand.getPracticeURl();
+                    SortedMap<Integer, ArrayList<String>> practiceInPDF = PracticeCommand.getPracticePDF();
+
                     List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
-                    List<InlineKeyboardButton> row1 = new ArrayList<>();
+                    List<InlineKeyboardButton> row = new ArrayList<>();
 
-                    InlineKeyboardButton button1 = new InlineKeyboardButton();
-                    button1.setText("Следующее");
-                    button1.setCallbackData("next " + practiceId + " 1");
+                    if (practiceInPDF.get(practiceId).size() > 1) {
+                        InlineKeyboardButton button1 = new InlineKeyboardButton();
+                        button1.setText("Скачать PDF ч.1");
+                        button1.setUrl(practiceInPDF.get(practiceId).get(0));
+                        InlineKeyboardButton button2 = new InlineKeyboardButton();
+                        button2.setText("Скачать PDF ч.2");
+                        button2.setUrl(practiceInPDF.get(practiceId).get(1));
+                        row.add(button1);
+                        row.add(button2);
+                        keyboard.add(row);
+                        markup.setKeyboard(keyboard);
 
-                    row1.add(button1);
-                    keyboard.add(row1);
-                    markup.setKeyboard(keyboard);
+                        SendMessage echoMessage = new SendMessage();
+                        echoMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
+                        echoMessage.setText(practiceInURL.get(practiceId));
+                        echoMessage.setReplyMarkup(markup);
+                        try {
+                            sendMessage(echoMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        InlineKeyboardButton button1 = new InlineKeyboardButton();
+                        button1.setText("Скачать в PDF");
+                        button1.setUrl(practiceInPDF.get(practiceId).get(0));
+                        row.add(button1);
+                        keyboard.add(row);
+                        markup.setKeyboard(keyboard);
 
-                    SortedMap<Integer, ArrayList<String>> practice = PracticeCommand.getPractice();
-
-                    SendMessage echoMessage = new SendMessage();
-                    echoMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
-                    echoMessage.setText(practice.get(practiceId).get(0));
-                    echoMessage.setReplyMarkup(markup);
-                    try {
-                        sendMessage(echoMessage);
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
+                        SendMessage echoMessage = new SendMessage();
+                        echoMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
+                        echoMessage.setText(practiceInURL.get(practiceId));
+                        echoMessage.setReplyMarkup(markup);
+                        try {
+                            sendMessage(echoMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    break;
-                case "next":
-//
-//                    String[] callbackArr = callback.split(" ");
-//
-//                    InlineKeyboardMarkup currentMarcup = new InlineKeyboardMarkup();
-//                    List<List<InlineKeyboardButton>> currentKeyboard = new ArrayList<>();
-//                    List<InlineKeyboardButton> currentRow = new ArrayList<>();
-//                    InlineKeyboardButton currentButton = new InlineKeyboardButton();
-//                    currentButton.setText("Следующее");
-//                    currentButton.setCallbackData(callback);
-//                    currentRow.add(currentButton);
-//                    currentKeyboard.add(currentRow);
-//                    currentMarcup.setKeyboard(currentKeyboard);
-//
-//                    SortedMap<Integer, ArrayList<String>> currentPractice = PracticeCommand.getPractice();
-//                    EditMessageText editMessageText = new EditMessageText();
-//                    editMessageText.setChatId(update.getCallbackQuery().getMessage().getChatId());
-//                    editMessageText.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
-//                    editMessageText.setText(callback);
-//                    editMessageText.setText(currentPractice.get(Integer.parseInt(callbackArr[1])).get(Integer.parseInt(callbackArr[2]) - 1) + "\n\t\tОК");
-//
-//                    editMessageText.setReplyMarkup(currentMarcup);
-//
-//                    try {
-//                        editMessageText(editMessageText);
-//                    } catch (TelegramApiException e) {
-//                        e.printStackTrace();
-//                    }
-
-                    int nextPracticeId = Integer.parseInt(callback.split(" ")[1]);
-                    int taskId = Integer.parseInt(callback.split(" ")[2]);
-                    int tmpTask = taskId+1;
-
-                    InlineKeyboardMarkup nextMarkup = new InlineKeyboardMarkup();
-
-                    List<List<InlineKeyboardButton>> nextKeyboard = new ArrayList<>();
-                    List<InlineKeyboardButton> nextRow1 = new ArrayList<>();
-
-                    InlineKeyboardButton button2 = new InlineKeyboardButton();
-                    button2.setText("Следующее");
-                    button2.setCallbackData("next " + nextPracticeId + " " + tmpTask);
-
-                    nextRow1.add(button2);
-                    nextKeyboard.add(nextRow1);
-                    nextMarkup.setKeyboard(nextKeyboard);
-
-                    SortedMap<Integer, ArrayList<String>> nextPractice = PracticeCommand.getPractice();
-
-                    SendMessage nextEchoMessage = new SendMessage();
-                    nextEchoMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
-                    nextEchoMessage.setText(nextPractice.get(nextPracticeId).get(taskId));
-                    nextEchoMessage.setReplyMarkup(nextMarkup);
-                    try {
-                        sendMessage(nextEchoMessage);
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }
-                    break;
                 default:
             }
         }

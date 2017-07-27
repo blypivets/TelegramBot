@@ -8,9 +8,6 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-/**
- * Created by Victor on 22.03.2017.
- */
 public class FeedbackCommand extends BotCommand {
 
     public FeedbackCommand() { super("feedback", "KotletkoBot welcomes your feedback");}
@@ -19,7 +16,8 @@ public class FeedbackCommand extends BotCommand {
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
-        answer.setText(EmojiParser.parseToUnicode("Идеи, отзывы или найденные баги присылайте сюда: \n\n@b_Lip:man_with_turban: \n@vshurig:baby: "));
+        answer.setText(EmojiParser.parseToUnicode("Идеи, отзывы, опечатки или найденные баги присылайте нам на почту:\n\n" +
+                "sqlgurubot@gmail.com: \n\nИли в личные сообщения:\n\n@b_Lip:man_with_turban: \n@vshurig:baby: "));
 
         try {
             absSender.sendMessage(answer);

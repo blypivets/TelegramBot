@@ -1,13 +1,7 @@
 package database;
 
-
-import org.telegram.telegrambots.logging.BotLogger;
-
 import java.sql.*;
 
-/**
- * Created by Victor on 25.03.2017.
- */
 public class ConnectionDB {
 
     private Connection connection = null;
@@ -47,14 +41,18 @@ public class ConnectionDB {
     public void closeConexion() {
         try {
             this.connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public ResultSet runSqlQuery(String query) throws SQLException {
+
         Statement statement;
         statement = this.connection.createStatement();
-        return statement.executeQuery(query);
+        ResultSet rs = statement.executeQuery(query);
+
+        return rs;
     }
 }

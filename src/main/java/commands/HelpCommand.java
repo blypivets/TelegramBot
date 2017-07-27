@@ -8,12 +8,7 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-/**
- * Created by Victor on 22.03.2017.
- */
 public class HelpCommand extends BotCommand {
-
-    //private static final String LOGTAG = "HELPCOMMAND";
 
     private final ICommandRegistry commandRegistry;
 
@@ -30,12 +25,15 @@ public class HelpCommand extends BotCommand {
         char[] smile = Character.toChars(0x1F601);
         helpMessageBuilder.append("\u263A");
         helpMessageBuilder.append(smile);
-        helpMessageBuilder.append("These are the registered commands for this Bot:\n\n");
+        helpMessageBuilder.append("Эти команды помогут тебе в управлении ботом:\n\n");
 
-        helpMessageBuilder.append("/start - With this command you can start the bot.\n");
-        helpMessageBuilder.append("/lecture - Get list of lectures or lecture specified by id\n");
-        helpMessageBuilder.append("/practice - Get list of practice and tasks\n");
-        helpMessageBuilder.append("/feedback - KotletkoBot welcomes your feedback\n");
+        helpMessageBuilder.append("/start - Начать использовать бота.\n\n");
+        helpMessageBuilder.append("/init - Здесь доступны все файлы и инструкции необходимые тебе для установки БД и выполнения практик.\n\n");
+        helpMessageBuilder.append("/lecture - Вызвав эту команду ты получишь список лекций, " +
+                "которые доступны для изучения и скачивания в формате PDF.\n\n");
+        helpMessageBuilder.append("/practice - Вызвав эту команду ты получишь список практических заданий " +
+                "которые нужно выполнить, также есть возможность загрузки в формате PDF\n\n");
+        helpMessageBuilder.append("/feedback - Хочешь связаться с нами? Тогда тебе сюда.\n\n");
 
         SendMessage helpMessage = new SendMessage();
         helpMessage.setChatId(chat.getId().toString());

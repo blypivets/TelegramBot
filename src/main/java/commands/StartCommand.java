@@ -8,12 +8,7 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-/**
- * Created by Victor on 22.03.2017.
- */
 public class StartCommand extends BotCommand {
-
-   // public static final String LOGTAG = "STARTCOMMAND";
 
     public StartCommand() {super("start", "With this command you can start the Bot");}
 
@@ -22,11 +17,13 @@ public class StartCommand extends BotCommand {
         StringBuilder messageBuilder = new StringBuilder();
 
         String userName = (user.getFirstName() == null? "": user.getFirstName()) +
-                 (user.getLastName() == null?"": " "+ user.getLastName());
+                (user.getLastName() == null?"": " "+ user.getLastName());
         messageBuilder.append(EmojiParser.parseToUnicode("Привет, " + userName + "!:vulcan_salute:\n\n"));
-        messageBuilder.append((EmojiParser.parseToUnicode("Этот бот - твоя последняя надежда выучить SQL.\nНе сможет научить он - не сможет никто!(It's a joke:smile:)\n\n")));
-        messageBuilder.append("Воспользуйся командой /help чтобы посмотреть описание команд. \n\n");
-        messageBuilder.append((EmojiParser.parseToUnicode("Скачивай лекции, проходи задания и у тебя все получится!Успехов!:wink:")));
+        messageBuilder.append((EmojiParser.parseToUnicode("Этот бот создан для помощи в изучении SQL.\n\n")));
+        messageBuilder.append("Он содержит лекционный и практический материал, просматривая и решая который, ты будешь совершенствовать свои навыки в области Database.\n\n");
+        messageBuilder.append("Практические задания подразумивают что ты уже промотрел соответствующий лекционный материал, и в онсновном будут опираться на него.\n\n");
+        messageBuilder.append("Воспользуйся командой /help чтобы посмотреть полное описание команд. \n\n");
+        messageBuilder.append((EmojiParser.parseToUnicode("Ну вот и все, вперед навстречу знаниям! И помни - главное систематичность занятий. \nУспехов!:wink:")));
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
