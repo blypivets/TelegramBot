@@ -19,6 +19,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
         register(new StartCommand());
         register(new FeedbackCommand());
         register(new PracticeCommand());
+        register(new ProLevel());
         HelpCommand helpCommand = new HelpCommand(this);
         register(helpCommand);
     }
