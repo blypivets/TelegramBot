@@ -9,10 +9,10 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.*;
 
 public class LectureCommand extends BotCommand {
 
@@ -23,7 +23,10 @@ public class LectureCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
 
-        StringBuilder lectureMessageBuilder = new StringBuilder("<b>Список лекций:\n\n</b>\n");
+        Properties properties = new Properties();
+        FileInputStream fis;
+
+        //StringBuilder lectureMessageBuilder = new StringBuilder("<b>Список лекций:\n\n</b>\n");
 
         SortedMap<Integer,String> lectureNames = getLectureNames();
         SortedMap<Integer,ArrayList<String>> lectureLinks = getLectureLinks();
@@ -60,15 +63,25 @@ public class LectureCommand extends BotCommand {
         }
         markup.setKeyboard(keyboard);
 
-        SendMessage lectureMessage = new SendMessage();
-        lectureMessage.setChatId(chat.getId().toString());
-        lectureMessage.enableHtml(true);
-        lectureMessage.setText(lectureMessageBuilder.toString());
-        lectureMessage.setReplyMarkup(markup);
-
         try {
+
+            fis = new FileInputStream("src/main/resources/descriptionCommand.properties");
+            properties.load(fis);
+
+            String description = new String(properties.getProperty("lectureCommand").getBytes("ISO8859-1"));
+
+            SendMessage lectureMessage = new SendMessage();
+            lectureMessage.setChatId(chat.getId().toString());
+            lectureMessage.enableHtml(true);
+            lectureMessage.setText(description);
+            lectureMessage.setReplyMarkup(markup);
+
             absSender.sendMessage(lectureMessage);
         } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

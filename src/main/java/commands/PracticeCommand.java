@@ -7,10 +7,9 @@ import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
+
+import java.io.FileInputStream;
+import java.util.*;
 
 public class PracticeCommand extends BotCommand {
     public PracticeCommand() {super("practice", "practic.." );
@@ -18,8 +17,10 @@ public class PracticeCommand extends BotCommand {
 
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
+        Properties properties = new Properties();
+        FileInputStream fis;
+
         SendMessage message = new SendMessage();
-        message.setText("Выбери практику по которой хочешь получить материал: ");
         message.setChatId(chat.getId());
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
@@ -113,7 +114,13 @@ public class PracticeCommand extends BotCommand {
         message.setReplyMarkup(markup);
 
         try {
+
+            fis = new FileInputStream("src/main/resources/descriptionCommand.properties");
+            properties.load(fis);
+            String description = new String(properties.getProperty("practiceCommand").getBytes("ISO8859-1"));
+            message.setText(description);
             absSender.sendMessage(message);
+
         } catch (Throwable e) {
             e.printStackTrace();
         }
