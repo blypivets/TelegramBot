@@ -31,6 +31,7 @@ public class FeedbackCommand extends BotCommand {
             SendMessage answer = new SendMessage();
             answer.setChatId(chat.getId().toString());
             answer.setText(EmojiParser.parseToUnicode(description));
+
             absSender.sendMessage(answer);
 
         } catch (TelegramApiException e) {

@@ -26,7 +26,6 @@ public class ProLevel extends BotCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
-
         Properties properties = new Properties();
         FileInputStream fis;
 
@@ -39,6 +38,7 @@ public class ProLevel extends BotCommand {
             SendMessage answer = new SendMessage();
             answer.setChatId(chat.getId().toString());
             answer.setText(EmojiParser.parseToUnicode(description));
+
             absSender.sendMessage(answer);
 
         } catch (TelegramApiException e) {
@@ -48,6 +48,5 @@ public class ProLevel extends BotCommand {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

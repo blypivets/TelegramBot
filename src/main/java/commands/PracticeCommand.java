@@ -20,8 +20,105 @@ public class PracticeCommand extends BotCommand {
         Properties properties = new Properties();
         FileInputStream fis;
 
-        SendMessage message = new SendMessage();
-        message.setChatId(chat.getId());
+        try {
+
+            fis = new FileInputStream("src/main/resources/descriptionCommand.properties");
+            properties.load(fis);
+
+            String description = new String(properties.getProperty("practiceCommand").getBytes("ISO8859-1"));
+            SendMessage message = new SendMessage();
+            message.setChatId(chat.getId());
+            message.setReplyMarkup(addButtons());
+            message.setText(description);
+
+            absSender.sendMessage(message);
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static SortedMap<Integer, ArrayList<String>> getPracticePDF (){
+        SortedMap<Integer,ArrayList<String>> practiceLinks = new TreeMap<>();
+
+        practiceLinks.put(1, new ArrayList<String>());
+        practiceLinks.get(1).add("https://drive.google.com/open?id=0B7e8YlQA9NpybmtwZzhXcnc0U2c");
+        practiceLinks.get(1).add("https://drive.google.com/open?id=0B7e8YlQA9NpyX3llam0xaG1NaVE");
+
+        practiceLinks.put(2, new ArrayList<String>());
+        practiceLinks.get(2).add("https://drive.google.com/open?id=0B7e8YlQA9NpyNGhvMmFoRGctVzA");
+
+        practiceLinks.put(3, new ArrayList<String>());
+        practiceLinks.get(3).add("https://drive.google.com/open?id=0B7e8YlQA9NpycjRoVjNOemxNakU");
+
+        practiceLinks.put(4, new ArrayList<String>());
+        practiceLinks.get(4).add("https://drive.google.com/open?id=0B7e8YlQA9Npyc2NnZ3hIVnRvQkE");
+
+        practiceLinks.put(5, new ArrayList<String>());
+        practiceLinks.get(5).add("https://drive.google.com/open?id=0B7e8YlQA9NpyTmdpLWZ3UkFnVHc");
+
+        practiceLinks.put(6, new ArrayList<String>());
+        practiceLinks.get(6).add("https://drive.google.com/open?id=0B7e8YlQA9Npya2lTV1lFUUVFMFU");
+
+        practiceLinks.put(7, new ArrayList<String>());
+        practiceLinks.get(7).add("https://drive.google.com/open?id=0B7e8YlQA9NpyTlFYdGcwYVM0NlE");
+        practiceLinks.get(7).add("https://drive.google.com/open?id=0B7e8YlQA9NpyQkJqbXB4VDE3NW8");
+
+        practiceLinks.put(8, new ArrayList<String>());
+        practiceLinks.get(8).add("https://drive.google.com/open?id=0B7e8YlQA9NpyRFphclhTQ3ZfdVE");
+
+        practiceLinks.put(9, new ArrayList<String>());
+        practiceLinks.get(9).add("https://drive.google.com/open?id=0B7e8YlQA9NpybDVMRy1wdWhFWVU");
+
+        practiceLinks.put(10, new ArrayList<String>());
+        practiceLinks.get(10).add("https://drive.google.com/open?id=0B7e8YlQA9NpybENmZUdsR0I1alE");
+
+        practiceLinks.put(11, new ArrayList<String>());
+        practiceLinks.get(11).add("https://drive.google.com/open?id=0B7e8YlQA9NpyZGpXbF9TMzZRZDA");
+
+        practiceLinks.put(12, new ArrayList<String>());
+        practiceLinks.get(12).add("https://drive.google.com/open?id=0B7e8YlQA9NpyX0IyYjFUMTFzQms");
+
+        practiceLinks.put(13, new ArrayList<String>());
+        practiceLinks.get(13).add("https://drive.google.com/open?id=0B7e8YlQA9NpyaU5rWlQwQnBiSHM");
+
+        practiceLinks.put(14, new ArrayList<String>());
+        practiceLinks.get(14).add("https://drive.google.com/open?id=0B7e8YlQA9NpybGNxeGhlVWg4cFE");
+
+        practiceLinks.put(15, new ArrayList<String>());
+        practiceLinks.get(15).add("https://drive.google.com/open?id=0B7e8YlQA9NpyWGVXUkNOVWlWUGs");
+
+        practiceLinks.put(16, new ArrayList<String>());
+        practiceLinks.get(16).add("https://drive.google.com/open?id=0B7e8YlQA9NpycXhmaUlDc3FmWXc");
+
+        return  practiceLinks;
+    }
+
+    public static SortedMap<Integer, String> getPracticeURl (){
+        SortedMap<Integer,String> practiceLinks = new TreeMap<>();
+
+        practiceLinks.put(1,"http://telegra.ph/Praktika-1--SQL-sozdanie-tablic-Ispolzovanie-SQLplus-06-25");
+        practiceLinks.put(2,"http://telegra.ph/Praktika-2--Ogranichenie-v-rezultatah-zaprosa-06-23");
+        practiceLinks.put(3,"http://telegra.ph/Praktika-3--Funkcii-odnoj-stroki-06-23");
+        practiceLinks.put(4,"http://telegra.ph/Praktika-4--Ispolzovanie-podzaprosov-06-23");
+        practiceLinks.put(5,"http://telegra.ph/Praktika-5--Insert-Update-Delete-06-23");
+        practiceLinks.put(6,"http://telegra.ph/Praktika-6--Zaprosy-k-neskolkim-tablicam-06-23");
+        practiceLinks.put(7,"http://telegra.ph/Praktika-7--Ispolzovanie-Join-06-25");
+        practiceLinks.put(8,"http://telegra.ph/Praktika-8--Operacii-nad-mnozhestvami-06-23");
+        practiceLinks.put(9,"http://telegra.ph/Praktika-9--Agregatnye-funkcii-06-25");
+        practiceLinks.put(10,"http://telegra.ph/Praktika-10--Semi-unique-data-06-25");
+        practiceLinks.put(11,"http://telegra.ph/Praktika-11--Ierarhicheskie-zaprosy-06-25");
+        practiceLinks.put(12,"http://telegra.ph/Praktika-12--Metamodel-BD-06-25");
+        practiceLinks.put(13,"http://telegra.ph/Praktika-13--Upravlenie-pravami-polzovatelej-06-25");
+        practiceLinks.put(14,"http://telegra.ph/Praktika-14--Tranzakcii-06-25");
+        practiceLinks.put(15,"http://telegra.ph/Praktika-15--Ispolzovanie-triggerov-06-25");
+        practiceLinks.put(16,"http://telegra.ph/Praktika-16--Indeksy-06-25");
+
+        return  practiceLinks;
+    }
+
+    public static InlineKeyboardMarkup addButtons(){
+
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
@@ -111,96 +208,7 @@ public class PracticeCommand extends BotCommand {
         keyboard.add(row8);
 
         markup.setKeyboard(keyboard);
-        message.setReplyMarkup(markup);
 
-        try {
-
-            fis = new FileInputStream("src/main/resources/descriptionCommand.properties");
-            properties.load(fis);
-            String description = new String(properties.getProperty("practiceCommand").getBytes("ISO8859-1"));
-            message.setText(description);
-            absSender.sendMessage(message);
-
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static SortedMap<Integer, ArrayList<String>> getPracticePDF (){
-        SortedMap<Integer,ArrayList<String>> practiceLinks = new TreeMap<>();
-
-        practiceLinks.put(1, new ArrayList<String>());
-        practiceLinks.get(1).add("https://drive.google.com/open?id=0B7e8YlQA9NpybmtwZzhXcnc0U2c");
-        practiceLinks.get(1).add("https://drive.google.com/open?id=0B7e8YlQA9NpyX3llam0xaG1NaVE");
-
-        practiceLinks.put(2, new ArrayList<String>());
-        practiceLinks.get(2).add("https://drive.google.com/open?id=0B7e8YlQA9NpyNGhvMmFoRGctVzA");
-
-        practiceLinks.put(3, new ArrayList<String>());
-        practiceLinks.get(3).add("https://drive.google.com/open?id=0B7e8YlQA9NpycjRoVjNOemxNakU");
-
-        practiceLinks.put(4, new ArrayList<String>());
-        practiceLinks.get(4).add("https://drive.google.com/open?id=0B7e8YlQA9Npyc2NnZ3hIVnRvQkE");
-
-        practiceLinks.put(5, new ArrayList<String>());
-        practiceLinks.get(5).add("https://drive.google.com/open?id=0B7e8YlQA9NpyTmdpLWZ3UkFnVHc");
-
-        practiceLinks.put(6, new ArrayList<String>());
-        practiceLinks.get(6).add("https://drive.google.com/open?id=0B7e8YlQA9Npya2lTV1lFUUVFMFU");
-
-        practiceLinks.put(7, new ArrayList<String>());
-        practiceLinks.get(7).add("https://drive.google.com/open?id=0B7e8YlQA9NpyTlFYdGcwYVM0NlE");
-        practiceLinks.get(7).add("https://drive.google.com/open?id=0B7e8YlQA9NpyQkJqbXB4VDE3NW8");
-
-        practiceLinks.put(8, new ArrayList<String>());
-        practiceLinks.get(8).add("https://drive.google.com/open?id=0B7e8YlQA9NpyRFphclhTQ3ZfdVE");
-
-        practiceLinks.put(9, new ArrayList<String>());
-        practiceLinks.get(9).add("https://drive.google.com/open?id=0B7e8YlQA9NpybDVMRy1wdWhFWVU");
-
-        practiceLinks.put(10, new ArrayList<String>());
-        practiceLinks.get(10).add("https://drive.google.com/open?id=0B7e8YlQA9NpybENmZUdsR0I1alE");
-
-        practiceLinks.put(11, new ArrayList<String>());
-        practiceLinks.get(11).add("https://drive.google.com/open?id=0B7e8YlQA9NpyZGpXbF9TMzZRZDA");
-
-        practiceLinks.put(12, new ArrayList<String>());
-        practiceLinks.get(12).add("https://drive.google.com/open?id=0B7e8YlQA9NpyX0IyYjFUMTFzQms");
-
-        practiceLinks.put(13, new ArrayList<String>());
-        practiceLinks.get(13).add("https://drive.google.com/open?id=0B7e8YlQA9NpyaU5rWlQwQnBiSHM");
-
-        practiceLinks.put(14, new ArrayList<String>());
-        practiceLinks.get(14).add("https://drive.google.com/open?id=0B7e8YlQA9NpybGNxeGhlVWg4cFE");
-
-        practiceLinks.put(15, new ArrayList<String>());
-        practiceLinks.get(15).add("https://drive.google.com/open?id=0B7e8YlQA9NpyWGVXUkNOVWlWUGs");
-
-        practiceLinks.put(16, new ArrayList<String>());
-        practiceLinks.get(16).add("https://drive.google.com/open?id=0B7e8YlQA9NpycXhmaUlDc3FmWXc");
-
-        return  practiceLinks;
-    }
-    public static SortedMap<Integer, String> getPracticeURl (){
-        SortedMap<Integer,String> practiceLinks = new TreeMap<>();
-
-        practiceLinks.put(1,"http://telegra.ph/Praktika-1--SQL-sozdanie-tablic-Ispolzovanie-SQLplus-06-25");
-        practiceLinks.put(2,"http://telegra.ph/Praktika-2--Ogranichenie-v-rezultatah-zaprosa-06-23");
-        practiceLinks.put(3,"http://telegra.ph/Praktika-3--Funkcii-odnoj-stroki-06-23");
-        practiceLinks.put(4,"http://telegra.ph/Praktika-4--Ispolzovanie-podzaprosov-06-23");
-        practiceLinks.put(5,"http://telegra.ph/Praktika-5--Insert-Update-Delete-06-23");
-        practiceLinks.put(6,"http://telegra.ph/Praktika-6--Zaprosy-k-neskolkim-tablicam-06-23");
-        practiceLinks.put(7,"http://telegra.ph/Praktika-7--Ispolzovanie-Join-06-25");
-        practiceLinks.put(8,"http://telegra.ph/Praktika-8--Operacii-nad-mnozhestvami-06-23");
-        practiceLinks.put(9,"http://telegra.ph/Praktika-9--Agregatnye-funkcii-06-25");
-        practiceLinks.put(10,"http://telegra.ph/Praktika-10--Semi-unique-data-06-25");
-        practiceLinks.put(11,"http://telegra.ph/Praktika-11--Ierarhicheskie-zaprosy-06-25");
-        practiceLinks.put(12,"http://telegra.ph/Praktika-12--Metamodel-BD-06-25");
-        practiceLinks.put(13,"http://telegra.ph/Praktika-13--Upravlenie-pravami-polzovatelej-06-25");
-        practiceLinks.put(14,"http://telegra.ph/Praktika-14--Tranzakcii-06-25");
-        practiceLinks.put(15,"http://telegra.ph/Praktika-15--Ispolzovanie-triggerov-06-25");
-        practiceLinks.put(16,"http://telegra.ph/Praktika-16--Indeksy-06-25");
-
-        return  practiceLinks;
+        return markup;
     }
 }
