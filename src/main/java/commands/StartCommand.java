@@ -34,6 +34,7 @@ public class StartCommand extends BotCommand {
             answer.setText("Привет, " + userName + description);
 
             absSender.sendMessage(answer);
+            fis.close();
 
         } catch (TelegramApiException e) {
             e.printStackTrace();

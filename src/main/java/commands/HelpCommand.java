@@ -40,6 +40,7 @@ public class HelpCommand extends BotCommand {
             helpMessage.setText(description);
 
             absSender.sendMessage(helpMessage);
+            fis.close();
 
         } catch (TelegramApiException e) {
             e.printStackTrace();

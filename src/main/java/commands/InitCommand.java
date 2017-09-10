@@ -14,13 +14,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by user on 09.09.17.
+ * Created by user on 10.09.17.
  */
-public class ProLevel extends BotCommand {
-
-
-    public ProLevel() {
-        super("prolevel", "Command with difficult tasks");
+public class InitCommand extends BotCommand {
+    public InitCommand() {
+        super("init", "With this command you can watch lectures");
     }
 
     @Override
@@ -34,7 +32,7 @@ public class ProLevel extends BotCommand {
             fis = new FileInputStream("src/main/resources/descriptionCommand.properties");
             properties.load(fis);
 
-            String description = new String(properties.getProperty("proLevelCommand").getBytes("ISO8859-1"));
+            String description = new String(properties.getProperty("initCommand").getBytes("ISO8859-1"));
             SendMessage answer = new SendMessage();
             answer.setChatId(chat.getId().toString());
             answer.setText(EmojiParser.parseToUnicode(description));

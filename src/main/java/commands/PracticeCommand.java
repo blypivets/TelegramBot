@@ -32,13 +32,15 @@ public class PracticeCommand extends BotCommand {
             message.setText(description);
 
             absSender.sendMessage(message);
+            fis.close();
 
         } catch (Throwable e) {
             e.printStackTrace();
         }
     }
 
-    public static SortedMap<Integer, ArrayList<String>> getPracticePDF (){
+    public static SortedMap<Integer, ArrayList<String>> getPracticePDF () {
+
         SortedMap<Integer,ArrayList<String>> practiceLinks = new TreeMap<>();
 
         practiceLinks.put(1, new ArrayList<String>());
@@ -94,7 +96,7 @@ public class PracticeCommand extends BotCommand {
         return  practiceLinks;
     }
 
-    public static SortedMap<Integer, String> getPracticeURl (){
+    public static SortedMap<Integer, String> getPracticeURl () {
         SortedMap<Integer,String> practiceLinks = new TreeMap<>();
 
         practiceLinks.put(1,"http://telegra.ph/Praktika-1--SQL-sozdanie-tablic-Ispolzovanie-SQLplus-06-25");

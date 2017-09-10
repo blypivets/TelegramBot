@@ -15,13 +15,14 @@ import java.util.*;
 public class KotletkoBot extends TelegramLongPollingCommandBot {
 
     public KotletkoBot() {
+
         register(new LectureCommand());
         register(new StartCommand());
         register(new FeedbackCommand());
         register(new PracticeCommand());
         register(new ProLevel());
-        HelpCommand helpCommand = new HelpCommand(this);
-        register(helpCommand);
+        register(new InitCommand());
+        register(new HelpCommand(this));
     }
 
     public void processNonCommandUpdate(Update update) {

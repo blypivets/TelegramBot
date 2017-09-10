@@ -33,6 +33,7 @@ public class FeedbackCommand extends BotCommand {
             answer.setText(EmojiParser.parseToUnicode(description));
 
             absSender.sendMessage(answer);
+            fis.close();
 
         } catch (TelegramApiException e) {
             e.printStackTrace();

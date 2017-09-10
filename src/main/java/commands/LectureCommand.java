@@ -77,6 +77,8 @@ public class LectureCommand extends BotCommand {
             lectureMessage.setReplyMarkup(markup);
 
             absSender.sendMessage(lectureMessage);
+            fis.close();
+
         } catch (TelegramApiException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
