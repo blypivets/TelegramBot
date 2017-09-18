@@ -61,6 +61,7 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
             String callback = update.getCallbackQuery().getData();
 
             switch (callback.split(" ")[0]) {
+
                 case "lecture":
                     int lectureId = Integer.parseInt(callback.split(" ")[1]);
 
