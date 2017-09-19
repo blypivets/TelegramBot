@@ -16,15 +16,15 @@ public class ZdynThread extends Thread {
     @Override
     public void run() {
 
-      /*  try {
+        try {
 
             ConnectionDB connectionDB = new ConnectionDB();
             connectionDB.connection();
 
-            ResultSet rs = connectionDB.runSqlQuery("select * from emp");
+            ResultSet rs = connectionDB.runSqlQuery("select current_user");
 
             while (rs.next()){
-                System.out.println(rs.getString("ename"));
+                System.out.println(rs.getString("ena"));
             }
 
             rs.close();
@@ -33,7 +33,6 @@ public class ZdynThread extends Thread {
             e.printStackTrace();
         }
 
-*/
 
 /*
 
