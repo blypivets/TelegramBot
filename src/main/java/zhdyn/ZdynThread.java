@@ -16,25 +16,24 @@ public class ZdynThread extends Thread {
     @Override
     public void run() {
 
-        try {
+        //try {
 
             ConnectionDB connectionDB = new ConnectionDB();
             connectionDB.connection();
-
+/*
             ResultSet rs = connectionDB.runSqlQuery("select current_user");
 
             while (rs.next()){
                 System.out.println(rs.getString("ena"));
             }
 
-            rs.close();
+            rs.close();*/
             connectionDB.closeConexion();
-        } catch (SQLException e) {
+       /* } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
-/*
 
         System.out.println(System.getenv("PORT"));
         int port = Integer.parseInt(System.getenv("PORT"));
@@ -55,8 +54,5 @@ public class ZdynThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-*/
-
-
     }
 }
