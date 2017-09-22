@@ -44,53 +44,54 @@ public class PracticeCommand extends BotCommand {
         SortedMap<Integer,ArrayList<String>> practiceLinks = new TreeMap<>();
 
         practiceLinks.put(1, new ArrayList<String>());
+        practiceLinks.put(2, new ArrayList<String>());
+        practiceLinks.put(3, new ArrayList<String>());
+        practiceLinks.put(4, new ArrayList<String>());
+        practiceLinks.put(5, new ArrayList<String>());
+        practiceLinks.put(6, new ArrayList<String>());
+        practiceLinks.put(7, new ArrayList<String>());
+        practiceLinks.put(8, new ArrayList<String>());
+        practiceLinks.put(9, new ArrayList<String>());
+        practiceLinks.put(10, new ArrayList<String>());
+        practiceLinks.put(11, new ArrayList<String>());
+        practiceLinks.put(12, new ArrayList<String>());
+        practiceLinks.put(13, new ArrayList<String>());
+        practiceLinks.put(14, new ArrayList<String>());
+        practiceLinks.put(15, new ArrayList<String>());
+        practiceLinks.put(16, new ArrayList<String>());
+
         practiceLinks.get(1).add("https://drive.google.com/open?id=0B7e8YlQA9NpybmtwZzhXcnc0U2c");
         practiceLinks.get(1).add("https://drive.google.com/open?id=0B7e8YlQA9NpyX3llam0xaG1NaVE");
 
-        practiceLinks.put(2, new ArrayList<String>());
         practiceLinks.get(2).add("https://drive.google.com/open?id=0B7e8YlQA9NpyNGhvMmFoRGctVzA");
 
-        practiceLinks.put(3, new ArrayList<String>());
         practiceLinks.get(3).add("https://drive.google.com/open?id=0B7e8YlQA9NpycjRoVjNOemxNakU");
 
-        practiceLinks.put(4, new ArrayList<String>());
         practiceLinks.get(4).add("https://drive.google.com/open?id=0B7e8YlQA9Npyc2NnZ3hIVnRvQkE");
 
-        practiceLinks.put(5, new ArrayList<String>());
         practiceLinks.get(5).add("https://drive.google.com/open?id=0B7e8YlQA9NpyTmdpLWZ3UkFnVHc");
 
-        practiceLinks.put(6, new ArrayList<String>());
         practiceLinks.get(6).add("https://drive.google.com/open?id=0B7e8YlQA9Npya2lTV1lFUUVFMFU");
 
-        practiceLinks.put(7, new ArrayList<String>());
         practiceLinks.get(7).add("https://drive.google.com/open?id=0B7e8YlQA9NpyTlFYdGcwYVM0NlE");
         practiceLinks.get(7).add("https://drive.google.com/open?id=0B7e8YlQA9NpyQkJqbXB4VDE3NW8");
 
-        practiceLinks.put(8, new ArrayList<String>());
         practiceLinks.get(8).add("https://drive.google.com/open?id=0B7e8YlQA9NpyRFphclhTQ3ZfdVE");
 
-        practiceLinks.put(9, new ArrayList<String>());
         practiceLinks.get(9).add("https://drive.google.com/open?id=0B7e8YlQA9NpybDVMRy1wdWhFWVU");
 
-        practiceLinks.put(10, new ArrayList<String>());
         practiceLinks.get(10).add("https://drive.google.com/open?id=0B7e8YlQA9NpybENmZUdsR0I1alE");
 
-        practiceLinks.put(11, new ArrayList<String>());
         practiceLinks.get(11).add("https://drive.google.com/open?id=0B7e8YlQA9NpyZGpXbF9TMzZRZDA");
 
-        practiceLinks.put(12, new ArrayList<String>());
         practiceLinks.get(12).add("https://drive.google.com/open?id=0B7e8YlQA9NpyX0IyYjFUMTFzQms");
 
-        practiceLinks.put(13, new ArrayList<String>());
         practiceLinks.get(13).add("https://drive.google.com/open?id=0B7e8YlQA9NpyaU5rWlQwQnBiSHM");
 
-        practiceLinks.put(14, new ArrayList<String>());
         practiceLinks.get(14).add("https://drive.google.com/open?id=0B7e8YlQA9NpybGNxeGhlVWg4cFE");
 
-        practiceLinks.put(15, new ArrayList<String>());
         practiceLinks.get(15).add("https://drive.google.com/open?id=0B7e8YlQA9NpyWGVXUkNOVWlWUGs");
 
-        practiceLinks.put(16, new ArrayList<String>());
         practiceLinks.get(16).add("https://drive.google.com/open?id=0B7e8YlQA9NpycXhmaUlDc3FmWXc");
 
         return  practiceLinks;
@@ -119,7 +120,7 @@ public class PracticeCommand extends BotCommand {
         return  practiceLinks;
     }
 
-    public static InlineKeyboardMarkup addButtons(){
+    public InlineKeyboardMarkup addButtons(){
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
@@ -135,52 +136,54 @@ public class PracticeCommand extends BotCommand {
         List<InlineKeyboardButton> row8 = new ArrayList<>();
 
         InlineKeyboardButton button1 = new InlineKeyboardButton();
-        button1.setText("Практика 1");
-        button1.setCallbackData("practice 1");
         InlineKeyboardButton button2 = new InlineKeyboardButton();
-        button2.setText("Практика 2");
-        button2.setCallbackData("practice 2");
         InlineKeyboardButton button3 = new InlineKeyboardButton();
-        button3.setText("Практика 3");
-        button3.setCallbackData("practice 3");
         InlineKeyboardButton button4 = new InlineKeyboardButton();
-        button4.setText("Практика 4");
-        button4.setCallbackData("practice 4");
         InlineKeyboardButton button5 = new InlineKeyboardButton();
-        button5.setText("Практика 5");
-        button5.setCallbackData("practice 5");
         InlineKeyboardButton button6 = new InlineKeyboardButton();
-        button6.setText("Практика 6");
-        button6.setCallbackData("practice 6");
         InlineKeyboardButton button7 = new InlineKeyboardButton();
-        button7.setText("Практика 7");
-        button7.setCallbackData("practice 7");
         InlineKeyboardButton button8 = new InlineKeyboardButton();
-        button8.setText("Практика 8");
-        button8.setCallbackData("practice 8");
         InlineKeyboardButton button9 = new InlineKeyboardButton();
-        button9.setText("Практика 9");
-        button9.setCallbackData("practice 9");
         InlineKeyboardButton button10 = new InlineKeyboardButton();
-        button10.setText("Практика 10");
-        button10.setCallbackData("practice 10");
         InlineKeyboardButton button11 = new InlineKeyboardButton();
-        button11.setText("Практика 11");
-        button11.setCallbackData("practice 11");
         InlineKeyboardButton button12 = new InlineKeyboardButton();
-        button12.setText("Практика 12");
-        button12.setCallbackData("practice 12");
         InlineKeyboardButton button13 = new InlineKeyboardButton();
-        button13.setText("Практика 13");
-        button13.setCallbackData("practice 13");
         InlineKeyboardButton button14 = new InlineKeyboardButton();
-        button14.setText("Практика 14");
-        button14.setCallbackData("practice 14");
         InlineKeyboardButton button15 = new InlineKeyboardButton();
-        button15.setText("Практика 15");
-        button15.setCallbackData("practice 15");
         InlineKeyboardButton button16 = new InlineKeyboardButton();
+
+        button1.setText("Практика 1");
+        button2.setText("Практика 2");
+        button3.setText("Практика 3");
+        button4.setText("Практика 4");
+        button5.setText("Практика 5");
+        button6.setText("Практика 6");
+        button7.setText("Практика 7");
+        button8.setText("Практика 8");
+        button9.setText("Практика 9");
+        button10.setText("Практика 10");
+        button11.setText("Практика 11");
+        button12.setText("Практика 12");
+        button13.setText("Практика 13");
+        button14.setText("Практика 14");
+        button15.setText("Практика 15");
         button16.setText("Практика 16");
+
+        button1.setCallbackData("practice 1");
+        button2.setCallbackData("practice 2");
+        button3.setCallbackData("practice 3");
+        button4.setCallbackData("practice 4");
+        button5.setCallbackData("practice 5");
+        button6.setCallbackData("practice 6");
+        button7.setCallbackData("practice 7");
+        button8.setCallbackData("practice 8");
+        button9.setCallbackData("practice 9");
+        button10.setCallbackData("practice 10");
+        button11.setCallbackData("practice 11");
+        button12.setCallbackData("practice 12");
+        button13.setCallbackData("practice 13");
+        button14.setCallbackData("practice 14");
+        button15.setCallbackData("practice 15");
         button16.setCallbackData("practice 16");
 
         row1.add(button1);

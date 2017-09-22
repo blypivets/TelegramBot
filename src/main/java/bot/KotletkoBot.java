@@ -97,19 +97,22 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     int practiceId = Integer.parseInt(callback.split(" ")[1]);
                     InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
-                    SortedMap<Integer, String> practiceInURL = PracticeCommand.getPracticeURl();
-                    SortedMap<Integer, ArrayList<String>> practiceInPDF = PracticeCommand.getPracticePDF();
+                    SortedMap<Integer, String> practicesInURL = PracticeCommand.getPracticeURl();
+                    SortedMap<Integer, ArrayList<String>> practicesInPDF = PracticeCommand.getPracticePDF();
 
                     List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
                     List<InlineKeyboardButton> row = new ArrayList<>();
 
-                    if (practiceInPDF.get(practiceId).size() > 1) {
+                    if (practicesInPDF.get(practiceId).size() > 1) {
                         InlineKeyboardButton button1 = new InlineKeyboardButton();
-                        button1.setText("Скачать PDF ч.1");
-                        button1.setUrl(practiceInPDF.get(practiceId).get(0));
                         InlineKeyboardButton button2 = new InlineKeyboardButton();
+
+                        button1.setText("Скачать PDF ч.1");
                         button2.setText("Скачать PDF ч.2");
-                        button2.setUrl(practiceInPDF.get(practiceId).get(1));
+
+                        button1.setUrl(practicesInPDF.get(practiceId).get(0));
+                        button2.setUrl(practicesInPDF.get(practiceId).get(1));
+
                         row.add(button1);
                         row.add(button2);
                         keyboard.add(row);
@@ -117,8 +120,9 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
 
                         SendMessage echoMessage = new SendMessage();
                         echoMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
-                        echoMessage.setText(practiceInURL.get(practiceId));
+                        echoMessage.setText(practicesInURL.get(practiceId));
                         echoMessage.setReplyMarkup(markup);
+
                         try {
                             sendMessage(echoMessage);
                         } catch (TelegramApiException e) {
@@ -127,14 +131,14 @@ public class KotletkoBot extends TelegramLongPollingCommandBot {
                     } else {
                         InlineKeyboardButton button1 = new InlineKeyboardButton();
                         button1.setText("Скачать в PDF");
-                        button1.setUrl(practiceInPDF.get(practiceId).get(0));
+                        button1.setUrl(practicesInPDF.get(practiceId).get(0));
                         row.add(button1);
                         keyboard.add(row);
                         markup.setKeyboard(keyboard);
 
                         SendMessage echoMessage = new SendMessage();
                         echoMessage.setChatId(update.getCallbackQuery().getMessage().getChatId());
-                        echoMessage.setText(practiceInURL.get(practiceId));
+                        echoMessage.setText(practicesInURL.get(practiceId));
                         echoMessage.setReplyMarkup(markup);
                         try {
                             sendMessage(echoMessage);
