@@ -1,13 +1,11 @@
 package zhdyn;
 
-import database.ConnectionDB;
+import storages.database.ConnectionDB;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 public class ZdynThread extends Thread {
