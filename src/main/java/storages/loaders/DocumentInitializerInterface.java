@@ -1,10 +1,16 @@
 package storages.loaders;
 
+import documents.Item;
+import documents.Lecture;
+import documents.Practice;
+
+import java.sql.ResultSet;
+
 public interface DocumentInitializerInterface  {
 
-    public void initializePractice (int numberOfPractice);
+    public Practice initializePractice (int numberOfPractice);
 
-    public void initializeLecture (int numberOfLecture);
+    public Lecture initializeLecture (int numberOfLecture);
 
-    public void initializeAdditionalItem (int numberOfItem);
+    public Item initializeAdditionalItem (int numberOfItem);
 }
