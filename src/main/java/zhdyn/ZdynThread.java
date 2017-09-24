@@ -17,7 +17,7 @@ public class ZdynThread extends Thread {
         //try {
 
             ConnectionDB connectionDB = new ConnectionDB();
-            connectionDB.connection();
+            connectionDB.getConnection();
 /*
             ResultSet rs = connectionDB.runSqlQuery("select current_user");
 
@@ -26,7 +26,7 @@ public class ZdynThread extends Thread {
             }
 
             rs.close();*/
-            connectionDB.closeConexion();
+            //connectionDB.closeConexion();
        /* } catch (SQLException e) {
             e.printStackTrace();
         }*/

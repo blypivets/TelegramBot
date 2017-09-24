@@ -4,16 +4,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
 
-public class ConnectionDB {
-
-    //private String dbName = "d2b30fglohbagh";
-    //private  String ssl = "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-    private String userName = "shddthktnqequs";
-    private String password = "653d148e20baec05a6a5afb5c7d48405c971ff15b556eda54e7b8389820b4ede";
+public class ConnectionDB extends BotConnection {
 
     private Connection connection = null;
 
-    public void connection(){
+    public Connection getConnection(){
 
         try {
 
@@ -34,15 +29,10 @@ public class ConnectionDB {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
-        if (connection != null) {
-            System.out.println("Connection complete!");
-        } else {
-            System.out.println("Connection failed!");
-        }
+        return connection;
     }
 
-    public void closeConexion() {
+    private void closeConnection() {
         try {
             this.connection.close();
 
@@ -56,6 +46,7 @@ public class ConnectionDB {
         Statement statement;
         statement = this.connection.createStatement();
         ResultSet rs = statement.executeQuery(query);
+        closeConnection();
 
         return rs;
     }
