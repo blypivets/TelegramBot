@@ -4,7 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
 
-public class ConnectionDB extends BotConnection {
+public class OneTimeConnectionToDB extends BotConnection {
 
     private Connection connection = null;
 

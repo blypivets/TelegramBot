@@ -1,6 +1,6 @@
 package zhdyn;
 
-import storages.database.ConnectionDB;
+import storages.database.OneTimeConnectionToDB;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class ZdynThread extends Thread {
 
         //try {
 
-            ConnectionDB connectionDB = new ConnectionDB();
+            OneTimeConnectionToDB connectionDB = new OneTimeConnectionToDB();
             connectionDB.getConnection();
 /*
             ResultSet rs = connectionDB.runSqlQuery("select current_user");
