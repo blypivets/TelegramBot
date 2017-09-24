@@ -1,8 +1,10 @@
 package storages.loaders;
 
-import documents.DocumentInterface;
+public interface DocumentInitializerInterface  {
 
-public interface DocumentInitializerInterface {
+    public void initializePractice (int numberOfPractice);
 
-    public void initializeDocument (DocumentInterface document, int numberOfDocument);
+    public void initializeLecture (int numberOfLecture);
+
+    public void initializeAdditionalItem (int numberOfItem);
 }
