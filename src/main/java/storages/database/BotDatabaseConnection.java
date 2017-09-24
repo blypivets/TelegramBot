@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Created by user on 24.09.17.
  */
-public abstract class BotConnection {
+public abstract class BotDatabaseConnection {
 
     private Connection connection = null;
 

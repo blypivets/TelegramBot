@@ -3,19 +3,16 @@ package storages.loaders;
 import documents.Item;
 import documents.Lecture;
 import documents.Practice;
-import storages.database.OneTimeConnectionToDB;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
+import storages.database.BotDatabaseConnection;
 
 /**
  * Created by user on 24.09.17.
  */
 public class DocLoader implements DocumentInitializerInterface {
 
-    private OneTimeConnectionToDB connection = null;
+    private BotDatabaseConnection connection = null;
 
-    public DocLoader(OneTimeConnectionToDB connection) {
+    public DocLoader(BotDatabaseConnection connection) {
         this.connection = connection;
     }
 

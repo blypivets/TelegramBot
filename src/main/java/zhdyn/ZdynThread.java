@@ -1,12 +1,13 @@
 package zhdyn;
 
+import documents.Practice;
 import storages.database.OneTimeConnectionToDB;
+import storages.loaders.DocLoader;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 
 public class ZdynThread extends Thread {
 
@@ -14,23 +15,9 @@ public class ZdynThread extends Thread {
     @Override
     public void run() {
 
-        //try {
+        DocLoader loader = new DocLoader(new OneTimeConnectionToDB());
 
-            OneTimeConnectionToDB connectionDB = new OneTimeConnectionToDB();
-            connectionDB.getConnection();
-/*
-            ResultSet rs = connectionDB.runSqlQuery("select current_user");
-
-            while (rs.next()){
-                System.out.println(rs.getString("ena"));
-            }
-
-            rs.close();*/
-            //connectionDB.closeConexion();
-       /* } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-
+        Practice practice1 = loader.initializePractice(5);
 
 
         System.out.println(System.getenv("PORT"));
