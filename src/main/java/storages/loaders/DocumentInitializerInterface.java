@@ -13,4 +13,6 @@ public interface DocumentInitializerInterface  {
     public Lecture initializeLecture (int numberOfLecture);
 
     public Item initializeAdditionalItem (int numberOfItem);
+
+    public int getCountOfPractices();
 }

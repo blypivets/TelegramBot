@@ -70,4 +70,24 @@ public class DocLoader implements DocumentInitializerInterface {
 
         return new Item();
     }
+
+    @Override
+    public int getCountOfPractices() {
+
+        int countOfPractices = 0;
+
+        try {
+            ResultSet resultSet = connection.runSqlQuery("SELECT COUNT(practiceno) FROM practices;");
+
+            while (resultSet.next()){
+
+                countOfPractices = resultSet.getInt("count");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return countOfPractices;
+    }
 }
