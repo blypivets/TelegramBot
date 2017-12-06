@@ -1,22 +1,19 @@
 package storages.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by user on 24.09.17.
  */
+
 public abstract class BotDatabaseConnection {
 
     private Connection connection = null;
 
     public ResultSet runSqlQuery(String query) throws SQLException {
 
-        Statement statement;
-        statement = this.connection.createStatement();
-        ResultSet rs = statement.executeQuery(query);
+        PreparedStatement ps = this.connection.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
 
         return rs;
     }

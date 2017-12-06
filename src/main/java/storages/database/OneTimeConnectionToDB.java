@@ -51,7 +51,6 @@ public class OneTimeConnectionToDB extends BotDatabaseConnection {
         Statement statement;
         statement = this.connection.createStatement();
         ResultSet rs = statement.executeQuery(query);
-        closeConnection();
 
         return rs;
     }

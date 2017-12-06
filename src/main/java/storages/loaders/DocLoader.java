@@ -5,9 +5,13 @@ import documents.Lecture;
 import documents.Practice;
 import storages.database.BotDatabaseConnection;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by user on 24.09.17.
  */
+
 public class DocLoader implements DocumentInitializerInterface {
 
     private BotDatabaseConnection connection = null;
@@ -19,7 +23,40 @@ public class DocLoader implements DocumentInitializerInterface {
     @Override
     public Practice initializePractice(int numberOfPractice) {
 
-        return new Practice();
+        Practice tempPractice = new Practice();
+
+        String taskLinks[] = new String[2];
+        String telegraphTaskLink = "";
+        int i = 0;
+
+
+        try {
+            ResultSet resultSetOfLinks = connection.runSqlQuery("SELECT ptk.partno, ptk.task_link FROM practices p\n" +
+                                   "JOIN practice_tasks ptk USING (practice_id)\n" +
+                                   "WHERE p.practiceno =" + numberOfPractice + "\n" +
+                                   "ORDER BY ptk.partno;");
+
+            ResultSet resultSetOfTelegraphLinks = connection.runSqlQuery("SELECT ptl.task_link FROM practices p\n" +
+                                    "JOIN practice_telegraph ptl USING (practice_id)\n" +
+                                    "WHERE p.practiceno =" + numberOfPractice + ";");
+
+
+            while (resultSetOfLinks.next()){
+                taskLinks[i] = resultSetOfLinks.getString("task_link");
+                i++;
+            }
+
+            while (resultSetOfTelegraphLinks.next()){
+                telegraphTaskLink = resultSetOfTelegraphLinks.getString("task_link");
+            }
+
+            tempPractice.setTaskLinks(taskLinks);
+            tempPractice.setTelegraphTaskLink(telegraphTaskLink);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tempPractice;
     }
 
     @Override
